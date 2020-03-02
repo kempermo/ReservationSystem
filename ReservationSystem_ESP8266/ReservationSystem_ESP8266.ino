@@ -22,7 +22,7 @@ bool roomAvailable = false; // holding the information if the room is stil free
 long durationTime = 0; // holding the information how long the room is stil free or how long it will be occupied (in seconds) 
 
 unsigned long lastHttpsTime = 0; // how often the data will be polled (in seconds)
-int pollingInterval = 5000;
+int pollingInterval = 20000;
 
 void setup()
 {
@@ -67,7 +67,7 @@ void loop()
 
       String title = data["title"];
       roomAvailable = data["roomAvailable"];
-      durationTime = data["durationTime"];
+      durationTime = int(data["durationTime"])/60;
 
       Serial.print("Title: ");
       Serial.println(title);
@@ -75,6 +75,8 @@ void loop()
       Serial.println(roomAvailable);
       Serial.print("durationTime: ");
       Serial.println(durationTime);
+
+      myservo.write(map(durationTime,0,3000,0,180));
     }
   }
 }
