@@ -8,7 +8,7 @@ const char pass[] = "phoenix123"; // put your wifi password here
 
 Servo myservo;  // create servo object to control a servo
 #define SERVO_PIN 2 // pin where the servo is attached
-int servoPosition = 0;    // variable to store the servo position
+int servoPosition = 180;    // variable to store the servo position
 
 const char* host = "script.google.com"; // link to the google script
 const int httpsPort = 443; // port for google
@@ -22,7 +22,7 @@ bool roomAvailable = false; // holding the information if the room is stil free
 long durationTime = 0; // holding the information how long the room is stil free or how long it will be occupied (in seconds) 
 
 unsigned long lastHttpsTime = 0; // how often the data will be polled (in seconds)
-int pollingInterval = 20000;
+long pollingInterval = 60*1000; // poll the information every minute
 
 void setup()
 {
@@ -46,8 +46,10 @@ void setup()
   Serial.println(WiFi.localIP());
 
   // start the servo
-  myservo.attach(SERVO_PIN, 1000, 2000); // attaches the servo on pin 18 to the servo object
+  myservo.attach(SERVO_PIN); // attaches the servo on pin 18 to the servo object
   myservo.write(servoPosition); //
+
+  lastHttpsTime = millis()-pollingInterval;
 }
 
 void loop()
@@ -76,8 +78,13 @@ void loop()
       Serial.print("durationTime: ");
       Serial.println(durationTime);
 
-      myservo.write(map(durationTime,0,3000,0,180));
+      if(roomAvailable)
+      {
+        myservo.write(map(durationTime,0,30,0,180));
+      }
     }
+
+    lastHttpsTime = millis();
   }
 }
 
