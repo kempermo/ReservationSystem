@@ -16,6 +16,6 @@ Servo yellow - Esp 2
 Download and open this repository in Arduino IDE. Install the required dependencies and upload the sketch to your ESP8266.
 
 ## Dependencies
-Arduino JSON (https://arduinojson.org)
-Servo ()
-HTTPSRedirect (https://github.com/electronicsguy/ESP8266/tree/master/HTTPSRedirect)
+- Arduino JSON (https://arduinojson.org)
+- Servo ()
+- HTTPSRedirect (https://github.com/electronicsguy/ESP8266/tree/master/HTTPSRedirect)
