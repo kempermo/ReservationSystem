@@ -1,10 +1,10 @@
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>
-#include <Servo.h>
+//#include <Servo.h>
 #include "HTTPSRedirect.h"
 
-const char ssid[] = "PHOENIX_Guest"; // put your wifi ssid here
-const char pass[] = "phoenix123"; // put your wifi password here
+const char ssid[] = "XXX"; // put your wifi ssid here
+const char pass[] = "XXX"; // put your wifi password here
 
 Servo myservo;  // create servo object to control a servo
 #define SERVO_PIN 2 // pin where the servo is attached
